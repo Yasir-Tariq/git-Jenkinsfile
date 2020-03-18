@@ -11,7 +11,7 @@ pipeline {
             }
         }
     }
-    stage ("ValidateTag") {
+    stage ("echo version") {
         steps {
             sshagent (credentials: ['ssh-key']) {
                 script {
