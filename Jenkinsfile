@@ -1,12 +1,14 @@
 def tag_commit
 def version
 def remote_tag
+def commit_id
 pipeline {
   agent any
   stages {
     stage ("checkout to Jenkins_Git_Tagging") {
         steps {
-            sshagent (credentials: ['ssh-key']) {
+            script {
+                sshagent (credentials: ['ssh-key']) {
                 git branch: 'master',
                 credentialsId: 'ssh-key',
                 url: 'git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git'
@@ -15,7 +17,8 @@ pipeline {
                 sh "head -1 version.txt"
                 sh "git ls-remote git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git refs/heads/master | head -c 40"
                 // echo "${version}"
-                echo "${GIT_COMMIT}"
+                // echo "${GIT_COMMIT}"
+            }
             }
             
         }
