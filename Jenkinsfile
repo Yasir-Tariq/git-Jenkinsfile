@@ -6,15 +6,18 @@ pipeline {
   stages {
     stage ("checkout to Jenkins_Git_Tagging") {
         steps {
-            git branch: 'master',
+            sshagent (credentials: ['ssh-key']) {
+                git branch: 'master',
                 credentialsId: 'ssh-key',
                 url: 'git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git'
 
-            sh "ls -lat"
-            sh "head -1 version.txt"
-            sh "git ls-remote git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git HEAD"
-            // echo "${version}"
-            echo "${GIT_COMMIT}"
+                sh "ls -lat"
+                sh "head -1 version.txt"
+                sh "git ls-remote git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git HEAD"
+                // echo "${version}"
+                echo "${GIT_COMMIT}"
+            }
+            
         }
         // steps {
         //     sshagent (credentials: ['ssh-key']) {
