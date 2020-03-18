@@ -10,7 +10,7 @@ pipeline {
         string(name: 'branch_name', defaultValue: 'master', description: 'Select branck to checkout')
     }
   stages {
-    stage("Checkout source")
+    stage("Checkout Source")
     {
       steps {
         checkout([$class: 'GitSCM',
@@ -18,7 +18,7 @@ pipeline {
         userRemoteConfigs: [[credentialsId: "${params.credentials}", url: "${params.checkout_url}"]]])
       }
     }
-    stage ("checkout to repository to access versions.txt") {
+    stage ("Git Tag Validate") {
         steps {
             script {
                 sshagent (credentials: ['ssh-key']) {
