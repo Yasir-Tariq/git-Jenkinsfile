@@ -14,7 +14,7 @@ pipeline {
     {
       steps {
         checkout([$class: 'GitSCM',
-        branches: [[name: "${params.BranchName}"]],
+        branches: [[name: "${params.branch_name}"]],
         userRemoteConfigs: [[credentialsId: 'ssh-key', url: 'git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git']]])
       }
     }
