@@ -13,7 +13,7 @@ pipeline {
     stage ("checkout to repository to access versions.txt") {
         steps {
             script {
-                sshagent (credentials: ['ssh-key']) {
+                // sshagent (credentials: ['ssh-key']) {
                 git branch: "${params.branch_name}",
                 credentialsId: "${params.credentials}",
                 url: "${params.checkout_url}"
@@ -35,7 +35,7 @@ pipeline {
                     sh "git tag -a ${version} -m 'adding new tag'"
                     sh "git push -f origin ${version}"
                 }
-            }
+            // }
             }
             
         }
