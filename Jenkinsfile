@@ -11,6 +11,8 @@ pipeline {
                 url: 'git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git'
 
             sh "ls -lat"
+            version = sh(script: "head -1 version.txt || :", , returnStdout: true).trim()
+            echo "${version}"
             echo "${GIT_COMMIT}"
         }
         // steps {
