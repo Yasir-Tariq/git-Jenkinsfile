@@ -14,10 +14,10 @@ pipeline {
         steps {
             script {
                 sshagent (credentials: ['ssh-key']) {
-                git branch: ${params.branch_name},
-                credentialsId: ${params.credentials},
+                git branch: "${params.branch_name}",
+                credentialsId: "${params.credentials}",
                 // url: 'git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git'
-                url: ${params.checkout_url}
+                url: "${params.checkout_url}"
 
                 // sh "ls -lat"
                 // sh "head -1 version.txt"
