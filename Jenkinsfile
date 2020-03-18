@@ -12,6 +12,7 @@ pipeline {
 
             sh "ls -lat"
             sh "head -1 version.txt"
+            sh "git ls-remote git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git HEAD"
             // echo "${version}"
             echo "${GIT_COMMIT}"
         }
