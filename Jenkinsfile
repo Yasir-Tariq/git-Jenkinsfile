@@ -5,7 +5,9 @@ pipeline {
   agent any
   stages {
     stage ("checkout from Jenkins_Git_Tagging") {
-        git url: 'git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git'
+        steps {
+            git url: 'git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git'
+        }
     }
     stage ("ValidateTag") {
         steps {
