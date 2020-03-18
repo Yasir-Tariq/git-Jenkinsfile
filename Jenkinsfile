@@ -1,7 +1,7 @@
-def tag_commit
-def version
-def remote_tag
-def commit_id
+def tag_commit //for storing sha of tag
+def version //for storing version to be pushed and checked
+def remote_tag //for storing the remote tags to check their existence
+def commit_id // for storing the latest commit id of the checked out repository
 pipeline {
   agent any
   parameters {
