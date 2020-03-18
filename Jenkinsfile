@@ -23,7 +23,7 @@ pipeline {
             script {
                 sshagent (credentials: ['ssh-key']) {
                 //getting the latest commit id of the repository where versions.txt exists
-                commit_id = sh(script: "git ls-remote ${params.checkout_url} refs/heads/master | head -c 40", , returnStdout: true).trim() //getting the latest commit id of the repo
+                commit_id = sh(script: "git ls-remote ${params.checkout_url} refs/heads/${params.branch_name} | head -c 40", , returnStdout: true).trim() //getting the latest commit id of the repo
                 version = sh(script: "head -1 version.txt || :", , returnStdout: true).trim() //getting the version string from the text file
                 tag_commit = sh(script: "echo \$(git rev-list -n 1 ${version}) || :", , returnStdout: true).trim() //getting the commit to pointer id of the tag
                 remote_tag = sh(script: "echo \$(git ls-remote --tags origin | grep ${version}) || :", , returnStdout: true).trim() //finding the tag in the remotely pushed tags
