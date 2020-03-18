@@ -6,7 +6,9 @@ pipeline {
   stages {
     stage ("checkout from Jenkins_Git_Tagging") {
         steps {
-            git url: 'git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git'
+            sshagent (credentials: ['ssh-key']) {
+                git url: 'git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git'
+            }
         }
     }
     stage ("ValidateTag") {
