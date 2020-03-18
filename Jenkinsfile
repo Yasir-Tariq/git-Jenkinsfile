@@ -13,7 +13,7 @@ pipeline {
     }
     stage ("echo version") {
         steps {
-            sshagent (credentials: ['ssh-key']) {
+            // sshagent (credentials: ['ssh-key']) {
                 script {
                     version = sh(script: "head -1 version.txt || :", , returnStdout: true).trim() //getting the version string from the text file
                     sh "echo ${version}"
@@ -33,7 +33,7 @@ pipeline {
                     //     sh "git push -f origin ${version}"
                     // }
                 }
-            }
+            // }
         }
     }
   }
