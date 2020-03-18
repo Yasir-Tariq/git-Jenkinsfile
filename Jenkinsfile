@@ -4,14 +4,20 @@ def remote_tag
 def commit_id
 pipeline {
   agent any
+  parameters {
+        string(name: 'checkout_url', defaultValue: 'git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git', description: 'url for the repository')
+        string(name: 'credentials', defaultValue: 'ssh-key', description: 'credentials for ssh connection')
+        string(name: 'branch_name', defaultValue: 'master', description: 'Select branck to checkout')
+    }
   stages {
     stage ("checkout to Jenkins_Git_Tagging") {
         steps {
             script {
                 sshagent (credentials: ['ssh-key']) {
-                git branch: 'master',
-                credentialsId: 'ssh-key',
-                url: 'git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git'
+                git branch: ${params.branch_name},
+                credentialsId: ${params.credentials},
+                // url: 'git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git'
+                url: ${params.checkout_url}
 
                 // sh "ls -lat"
                 // sh "head -1 version.txt"
