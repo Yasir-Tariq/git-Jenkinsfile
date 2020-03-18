@@ -21,7 +21,7 @@ pipeline {
     stage ("Git Tag Validate") {
         steps {
             script {
-                sshagent (credentials: ['ssh-key']) {
+                sshagent (credentials: ["${params.credentials}"]) {
                 //getting the latest commit id of the repository where versions.txt exists
                 commit_id = sh(script: "git ls-remote ${params.checkout_url} refs/heads/${params.branch_name} | head -c 40", , returnStdout: true).trim() //getting the latest commit id of the repo
                 version = sh(script: "head -1 version.txt || :", , returnStdout: true).trim() //getting the version string from the text file
