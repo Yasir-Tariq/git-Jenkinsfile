@@ -15,16 +15,13 @@ pipeline {
       steps {
         checkout([$class: 'GitSCM',
         branches: [[name: "${params.branch_name}"]],
-        userRemoteConfigs: [[credentialsId: 'ssh-key', url: 'git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git']]])
+        userRemoteConfigs: [[credentialsId: "${params.credentials}", url: "${params.checkout_url}"]]])
       }
     }
     stage ("checkout to repository to access versions.txt") {
         steps {
             script {
                 sshagent (credentials: ['ssh-key']) {
-                // git branch: "${params.branch_name}",
-                // credentialsId: "${params.credentials}",
-                // url: "${params.checkout_url}"
                 //getting the latest commit id of the repository where versions.txt exists
                 commit_id = sh(script: "git ls-remote ${params.checkout_url} refs/heads/master | head -c 40", , returnStdout: true).trim() //getting the latest commit id of the repo
                 version = sh(script: "head -1 version.txt || :", , returnStdout: true).trim() //getting the version string from the text file
