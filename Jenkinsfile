@@ -4,7 +4,7 @@ def remote_tag
 pipeline {
   agent any
   stages {
-    // stage ("checkout from Jenkins_Git_Tagging") {
+    // stage ("checkout to Jenkins_Git_Tagging") {
     //     steps {
     //         sshagent (credentials: ['ssh-key']) {
     //             git url: 'git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git'
