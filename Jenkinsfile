@@ -11,7 +11,7 @@ pipeline {
                 url: 'git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git'
 
             sh "ls -lat"
-            echo ${GIT_COMMIT}
+            echo "${GIT_COMMIT}"
         }
         // steps {
         //     sshagent (credentials: ['ssh-key']) {
