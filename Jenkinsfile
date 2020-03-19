@@ -7,7 +7,7 @@ pipeline {
   parameters {
         string(name: 'checkout_url', defaultValue: 'git@github.com:Yasir-Tariq/Jenkins_Git_Tagging.git', description: 'url for the repository')
         string(name: 'credentials', defaultValue: 'ssh-key', description: 'credentials for ssh connection')
-        string(name: 'branch_name', defaultValue: 'master', description: 'Select branck to checkout')
+        string(name: 'branch_name', defaultValue: 'master', description: 'Select branch to checkout')
     }
   stages {
     stage("Checkout Source")
